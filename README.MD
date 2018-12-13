@@ -51,6 +51,9 @@ You'll also need JBoss EAP or Wildfly to deploy it on.  Here's a sample standalo
             <module-option name="java.naming.referral" value="follow"/>
         </login-module>
     </authentication>
+    <mapping>
+      <mapping-module code="org.jboss.security.mapping.providers.DeploymentRoleToRolesMappingProvider" type="role"/>
+    </mapping>
 </security-domain>
 <security-domain name="ad-domain" cache-type="default">
     <authentication>

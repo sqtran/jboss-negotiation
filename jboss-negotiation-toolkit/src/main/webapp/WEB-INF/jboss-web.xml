@@ -2,8 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_7_0.xsd"
 	version="7.0">
-	
+
 <!--	<security-domain>java:/jaas/SPNEGO</security-domain> -->
         <security-domain>SPNEGO</security-domain>
         <jacc-star-role-allow>true</jacc-star-role-allow>
+
+			  <security-role>
+				  	<role-name>ROL_VendorAccount</role-name>
+            <!-- <principal-name>APP_AllUsers_Access</principal-name> -->
+            <principal-name>steve_role</principal-name>
+        </security-role>
 </jboss-web>
