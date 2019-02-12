@@ -1,7 +1,18 @@
 <jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_7_0.xsd"
-	version="7.0">
-	
-	<security-domain>java:/jaas/SPNEGO</security-domain>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_7_0.xsd"
+    version="7.0">
+
+	 <security-domain>SPNEGO</security-domain>
+	 
+	 <!--
+	 	<security-domain>ad-domain</security-domain>
+		<security-domain>odfl-db-domain</security-domain>
+
+		<security-role>
+			<role-name>grpjav01</role-name>
+			<principal-name>steve_role</principal-name>
+		</security-role>
+	-->
+  <jacc-star-role-allow>true</jacc-star-role-allow>
 </jboss-web>

@@ -9,7 +9,8 @@
      <description>BASIC Authentication FallBack</description>
      <param-name>org.jboss.security.negotiation.NegotiationAuthenticator.BasicAuthFallBack</param-name>
      <param-value>false</param-value>
-   </context-param>  
+   </context-param>
+
 
 	<servlet>
 		<servlet-name>BasicNegotiation</servlet-name>
@@ -47,7 +48,7 @@
     <servlet-mapping>
       <servlet-name>NTLMNegotiation</servlet-name>
       <url-pattern>/NTLMNegotiation</url-pattern>
-    </servlet-mapping>      
+    </servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SecurityDomainTest</servlet-name>
 		<url-pattern>/SecurityDomainTest</url-pattern>
@@ -56,31 +57,59 @@
 		<servlet-name>Secured</servlet-name>
 		<url-pattern>/Secured</url-pattern>
 	</servlet-mapping>
-		
-    <security-constraint>
+	<servlet-mapping>
+		<servlet-name>Secured</servlet-name>
+		<url-pattern>/None</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Secured</servlet-name>
+		<url-pattern>/webuser</url-pattern>
+	</servlet-mapping>
+
+ 	<security-constraint>
       <web-resource-collection>
         <web-resource-name>Restricted</web-resource-name>
         <url-pattern>/Secured/*</url-pattern>
       </web-resource-collection>
       <auth-constraint>
-        <role-name>Users</role-name>
+        <role-name>grpjav01</role-name>
       </auth-constraint>
       <user-data-constraint>
-        <transport-guarantee>NONE</transport-guarantee>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        <!-- <transport-guarantee>NONE</transport-guarantee>-->
       </user-data-constraint>
     </security-constraint>
-    
-   <login-config>   
-    <auth-method>SPNEGO,FORM</auth-method>
-    <realm-name>SPNEGO</realm-name>
-    <form-login-config>
-      <form-login-page>/login.html</form-login-page>
-      <form-error-page>/error.html</form-error-page>
-    </form-login-config>
+
+    <security-constraint>
+      <web-resource-collection>
+        <web-resource-name>Restricted</web-resource-name>
+        <url-pattern>/webuser/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+        <role-name>webuser</role-name>
+      </auth-constraint>
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+    </security-constraint>
+
+   <login-config>
+   		<auth-method>SPNEGO,BASIC</auth-method>
    </login-config>
-          
+
+	<security-role>
+	    <role-name>grpjav01</role-name>
+	</security-role>
+	<security-role>
+	    <role-name>Users</role-name>
+	</security-role>
+	<security-role>
+	    <role-name>steve_role</role-name>
+	</security-role>
     <security-role>
-      <role-name>Users</role-name>
-    </security-role>		
-		
+      <role-name>ROL_VendorAccount</role-name>
+    </security-role>
+    <security-role>
+      <role-name>webuser</role-name>
+    </security-role>	
 </web-app>

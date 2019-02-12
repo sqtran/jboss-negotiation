@@ -34,12 +34,28 @@
     <p> 
       The Secured servlet is a servlet that has been fully secured.<br>
       
-      This servlet will display the users principal and the users roles.<br>
+      This servlet will display the users principal and the user's roles.<br>
       
       The purpose of this servlet is to test the final stage of configuration
       to verify that SPNEGO authentication is working.<br>
       <a href="Secured">Secured</a>
       <a href="Secured?asyc=true">Secured (Asynchronous)</a> 
-    </p>        
+    </p>
+    
+    <h3>None</h3>
+    <p> 
+      This servlet will display the users principal and the user's roles.<br>
+      
+      The purpose of this servlet is mainly as a sanity check when debugging configurations.<br>
+      <a href="None">None</a> 
+    </p>
+    
+    <h3>webuser</h3>
+    <p> 
+      Similar to /Secured, but this one is looking for a role named webuser instead of grpjav01)<br>
+      
+      The purpose of this servlet is mainly to assist with debugging.<br>
+      <a href="None">webuser</a> 
+    </p>     
   </body>
 </html>

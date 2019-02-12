@@ -33,7 +33,6 @@ import java.util.Set;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,6 +61,9 @@ public class SecuredServlet extends HttpServlet
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 
+    	System.out.println("\nDEBUG_STEVE\nSecuredServet doGet()\n\n");
+    	
+    	
         boolean goAsyc = Boolean.parseBoolean(req.getParameter("async"));
 
         if (goAsyc) {
@@ -81,7 +83,10 @@ public class SecuredServlet extends HttpServlet
     }
 
    private void writeResponse(final HttpServletRequest req, final HttpServletResponse resp, final boolean async) throws IOException {
-       PrintWriter writer = resp.getWriter();
+
+   	System.out.println("\nDEBUG_STEVE\nSecuredServet writeResponse()\n\n");
+
+	   PrintWriter writer = resp.getWriter();
 
        writer.println("<html>");
        writer.println("  <head>");
@@ -121,10 +126,15 @@ public class SecuredServlet extends HttpServlet
        writer.println("    <h5>Subject</h5>");
        writeObject(info.getAuthenticatedSubject(), writer);
 
-       Collection<Role> roles = info.getRoles().getRoles();
        writer.println("    <h5>Roles</h5>");
-       for (Role current : roles) {
-           writer.println(" " + current.getRoleName() + "<br>");
+       if(info != null && info.getRoles() != null) {
+	       Collection<Role> roles = info.getRoles().getRoles();
+	       for (Role current : roles) {
+	           writer.println(" " + current.getRoleName() + "<br>");
+	       }
+       }
+       else {
+    	   writer.println(" No Roles - Have you logged in?");
        }
 
        writer.println("  </body>");
@@ -134,6 +144,9 @@ public class SecuredServlet extends HttpServlet
 
    private void writeObject(final Object obj, final PrintWriter writer) throws IOException
    {
+	   
+	   System.out.println("\nDEBUG_STEVE writeObject() called");
+	   
       ByteArrayInputStream bais = new ByteArrayInputStream(String.valueOf(obj).getBytes());
       InputStreamReader isr = new InputStreamReader(bais);
       BufferedReader br = new BufferedReader(isr);
@@ -152,6 +165,9 @@ public class SecuredServlet extends HttpServlet
    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException,
          IOException
    {
+	   System.out.println("\nDEBUG_STEVE doPost() called");
+
+	   
       // Handle POST the same as GET.
       doGet(req, resp);
    }
