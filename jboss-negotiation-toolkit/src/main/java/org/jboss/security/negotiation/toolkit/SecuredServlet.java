@@ -38,6 +38,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.ietf.jgss.GSSCredential;
+import org.jboss.security.SecurityContext;
 import org.jboss.security.SecurityContextAssociation;
 import org.jboss.security.SubjectInfo;
 import org.jboss.security.identity.Identity;
@@ -105,6 +106,10 @@ public class SecuredServlet extends HttpServlet
        writer.println("    <h5>User Principal</h5>");
        writeObject(req.getUserPrincipal(), writer);
 
+       
+       System.out.println(SecurityContextAssociation.getSecurityContext());
+       
+       
        SubjectInfo info = SecurityContextAssociation.getSecurityContext().getSubjectInfo();
        Set<Identity> identities = info.getIdentities();
        writer.println("    <h5>Identities</h5>");
@@ -136,6 +141,8 @@ public class SecuredServlet extends HttpServlet
        else {
     	   writer.println(" No Roles - Have you logged in?");
        }
+
+       writer.println("Success");
 
        writer.println("  </body>");
        writer.println("</html>");

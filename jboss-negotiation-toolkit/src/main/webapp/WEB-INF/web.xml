@@ -65,6 +65,10 @@
 		<servlet-name>Secured</servlet-name>
 		<url-pattern>/webuser</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Secured</servlet-name>
+		<url-pattern>/invalid</url-pattern>
+	</servlet-mapping>
 
  	<security-constraint>
       <web-resource-collection>
@@ -93,10 +97,27 @@
       </user-data-constraint>
     </security-constraint>
 
+  <security-constraint>
+      <web-resource-collection>
+        <web-resource-name>Restricted</web-resource-name>
+        <url-pattern>/invalid/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+        <role-name>invalidrolethatshouldnotexist</role-name>
+      </auth-constraint>
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+    </security-constraint>
+
+
    <login-config>
    		<auth-method>SPNEGO,BASIC</auth-method>
    </login-config>
 
+	<security-role>
+	    <role-name>invalidrolethatshouldnotexist</role-name>
+	</security-role>
 	<security-role>
 	    <role-name>grpjav01</role-name>
 	</security-role>
